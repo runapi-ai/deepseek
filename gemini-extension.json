@@ -1,0 +1,10 @@
+{
+  "name": "deepseek",
+  "version": "0.1.0",
+  "description": "RunAPI DeepSeek API skill for Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents",
+  "skills": [
+    {
+      "path": "skills/deepseek/SKILL.md"
+    }
+  ]
+}
