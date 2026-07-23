@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  Configure OpenAI-compatible or Anthropic-compatible clients to use DeepSeek models on RunAPI.
+  Configure OpenAI-compatible Chat, Responses, or Anthropic-compatible Messages clients to use DeepSeek models on RunAPI.
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@
 
 Call the DeepSeek API through RunAPI with OpenAI-compatible clients or
 Anthropic-compatible Messages clients. Point clients at `https://runapi.ai/v1`
-for Chat Completions, or `https://runapi.ai` for `/v1/messages`, send
+for Chat Completions and Responses, or `https://runapi.ai` for `/v1/messages`, send
 `deepseek-v4-pro` or `deepseek-v4-flash`, and pay through one RunAPI balance.
 This skill teaches Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents how
 to wire DeepSeek requests through RunAPI.
@@ -93,6 +93,39 @@ curl -X POST "https://runapi.ai/v1/chat/completions" \
 
 Get a RunAPI API Key at <https://runapi.ai/api_keys>.
 
+## Responses API with one Flash function
+
+`deepseek-v4-flash` supports one custom function with automatic selection.
+Omit `tool_choice`.
+
+```python
+tool = {
+    "type": "function",
+    "name": "get_weather",
+    "description": "Get weather for a city",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "city": {
+                "type": "string",
+            },
+        },
+        "required": ["city"],
+    },
+}
+
+response = client.responses.create(
+    model="deepseek-v4-flash",
+    input="What is the weather in Shanghai?",
+    tools=[tool],
+)
+print(response.output)
+```
+
+Return one matching `function_call_output` in the next request to receive final
+text. The same lifecycle is available as one OpenAI `tool_calls` / tool result
+pair or one Anthropic `tool_use` / `tool_result` pair.
+
 ## Anthropic-compatible option
 
 ```bash
@@ -108,10 +141,27 @@ Use model `deepseek-v4-pro` or `deepseek-v4-flash` when calling
 
 | Model ID | Notes |
 |---|---|
-| `deepseek-v4-pro` | Higher quality DeepSeek chat and reasoning tasks |
-| `deepseek-v4-flash` | Fast DeepSeek chat |
+| `deepseek-v4-pro` | Higher-quality DeepSeek text and reasoning tasks |
+| `deepseek-v4-flash` | Fast text and one custom-function lifecycle |
 
-## Routing
+## Consistent cross-protocol subset
+
+- Both models support text input, sync responses, SSE terminal events,
+  canonical token Usage, and protocol-specific public errors on Chat,
+  Responses, and Messages.
+- Flash supports one custom function and one serial call/result lifecycle.
+  Omit `tool_choice`; automatic selection is supported.
+- Do not send tools to Pro when consistent behavior is required. Multiple or
+  parallel calls, explicit tool selection, hosted/MCP/non-function tools,
+  Responses state or storage, reasoning references or controls, prompt-cache
+  controls, signed thinking, citations, documents, and multimodal content are
+  outside this subset.
+- Requests outside the subset may return a 4xx response before Usage reservation.
+  RunAPI does not silently drop these fields.
+- Terminal Usage is preserved as returned; RunAPI does not synthesize cache
+  fields.
+
+## Links
 
 - DeepSeek API on RunAPI: <https://runapi.ai/models/deepseek>
 - Provider page: <https://runapi.ai/providers/deepseek>
