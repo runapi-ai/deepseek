@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.1.2](https://github.com/runapi-ai/deepseek/releases/tag/v0.1.2) - 2026-08-10
+
+### Changed
+- Complete marketplace distribution for the RunAPI DeepSeek skill.
+
+
 ## [v0.1.1](https://github.com/runapi-ai/deepseek/releases/tag/v0.1.1) - 2026-07-23
 
 ### Added
