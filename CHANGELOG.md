@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.1.3](https://github.com/runapi-ai/deepseek/releases/tag/v0.1.3) - 2026-08-12
+
+### Changed
+- Document DeepSeek authentication, request, result verification, and stop boundaries in the primary recipe, with compatibility protocols loaded only when required.
+
+
 ## [v0.1.2](https://github.com/runapi-ai/deepseek/releases/tag/v0.1.2) - 2026-08-10
 
 ### Changed
