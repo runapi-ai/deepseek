@@ -24,7 +24,8 @@
 Call the DeepSeek API through RunAPI with OpenAI-compatible clients or
 Anthropic-compatible Messages clients. Point clients at `https://runapi.ai/v1`
 for Chat Completions and Responses, or `https://runapi.ai` for `/v1/messages`, send
-`deepseek-v4-pro` or `deepseek-v4-flash`, and pay through one RunAPI balance.
+`deepseek-v4-pro`, `deepseek-v4-flash`, or `deepseek-v4-flash-vision-exp`, and pay
+through one RunAPI balance.
 This skill teaches Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents how
 to wire DeepSeek requests through RunAPI.
 
@@ -93,6 +94,28 @@ curl -X POST "https://runapi.ai/v1/chat/completions" \
 
 Get a RunAPI API Key at <https://runapi.ai/api_keys>.
 
+## Vision input
+
+`deepseek-v4-flash-vision-exp` accepts image content in Chat Completions. Use a
+publicly reachable JPEG, PNG, GIF, or WebP URL in an `image_url` content part.
+
+```python
+response = client.chat.completions.create(
+    model="deepseek-v4-flash-vision-exp",
+    messages=[{
+        "role": "user",
+        "content": [
+            {"type": "text", "text": "Describe this image."},
+            {"type": "image_url", "image_url": {
+                "url": "https://cdn.runapi.ai/public/samples/image.jpg"
+            }
+            },
+        ],
+    }],
+)
+print(response.choices[0].message.content)
+```
+
 ## Responses API with one Flash function
 
 `deepseek-v4-flash` supports one custom function with automatic selection.
@@ -134,28 +157,30 @@ ANTHROPIC_API_KEY=YOUR_RUNAPI_TOKEN \
 claude
 ```
 
-Use model `deepseek-v4-pro` or `deepseek-v4-flash` when calling
+Use model `deepseek-v4-pro`, `deepseek-v4-flash`, or
+`deepseek-v4-flash-vision-exp` when calling
 `POST /v1/messages`.
 
 ## Supported DeepSeek models
 
 | Model ID | Notes |
 |---|---|
+| `deepseek-v4-flash-vision-exp` | Vision input with JPEG, PNG, GIF, or WebP content |
 | `deepseek-v4-pro` | Higher-quality DeepSeek text and reasoning tasks |
 | `deepseek-v4-flash` | Fast text and one custom-function lifecycle |
 
 ## Consistent cross-protocol subset
 
-- Both models support text input, sync responses, SSE terminal events,
+- All models support text input, sync responses, SSE terminal events,
   canonical token Usage, and protocol-specific public errors on Chat,
   Responses, and Messages.
 - Flash supports one custom function and one serial call/result lifecycle.
   Omit `tool_choice`; automatic selection is supported.
-- Do not send tools to Pro when consistent behavior is required. Multiple or
+- Do not send tools to Pro or Vision Exp when consistent behavior is required. Multiple or
   parallel calls, explicit tool selection, hosted/MCP/non-function tools,
   Responses state or storage, reasoning references or controls, prompt-cache
-  controls, signed thinking, citations, documents, and multimodal content are
-  outside this subset.
+  controls, signed thinking, citations, documents, and multimodal content on
+  Pro or Flash are outside this subset. Vision Exp is the image-input model.
 - Requests outside the subset may return a 4xx response before Usage reservation.
   RunAPI does not silently drop these fields.
 - Terminal Usage is preserved as returned; RunAPI does not synthesize cache

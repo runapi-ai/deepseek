@@ -1,6 +1,6 @@
 ---
 name: deepseek
-description: Call the DeepSeek API (deepseek-v4-pro and deepseek-v4-flash) through RunAPI using OpenAI-compatible Chat Completions and Responses. Use for DeepSeek text, streaming, the verified Flash function path, or an existing compatibility client that needs the conditional reference.
+description: Call the DeepSeek API (deepseek-v4-pro, deepseek-v4-flash, and deepseek-v4-flash-vision-exp) through RunAPI using OpenAI-compatible Chat Completions and Responses. Use for DeepSeek text, image input, streaming, the verified Flash function path, or an existing compatibility client that needs the conditional reference.
 documentation: https://runapi.ai/models/deepseek.md
 provider_page: https://runapi.ai/providers/deepseek.md
 catalog: https://runapi.ai/models.md
@@ -43,6 +43,10 @@ For long output, set `stream=True` and
 `deepseek-v4-flash` additionally supports one custom function on Responses;
 keep automatic tool selection and one serial call/result lifecycle.
 
+For image input, use `deepseek-v4-flash-vision-exp` with a Chat Completions
+message content array containing a text part and an `image_url` part. The image
+URL must be publicly reachable and use JPEG, PNG, GIF, or WebP.
+
 ### Verify result
 
 For Chat, require final assistant content, `finish_reason`, and `usage`. For
@@ -65,6 +69,7 @@ Load [compatibility protocols](references/compatibility-protocols.md) only when 
 
 | Model ID | Use when |
 |---|---|
+| `deepseek-v4-flash-vision-exp` | Image input and vision tasks |
 | `deepseek-v4-pro` | Higher-quality verified text workloads |
 | `deepseek-v4-flash` | Fast text and one verified custom-function lifecycle |
 
