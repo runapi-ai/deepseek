@@ -1,6 +1,6 @@
 {
   "name": "deepseek",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "RunAPI DeepSeek API skill for Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents",
   "skills": [
     {

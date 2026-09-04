@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.1.5](https://github.com/runapi-ai/deepseek/releases/tag/v0.1.5) - 2026-09-04
+
+### Added
+- Document deepseek-v4-flash-vision-exp image input and supported image URL formats.
+
+
 ## [v0.1.4](https://github.com/runapi-ai/deepseek/releases/tag/v0.1.4) - 2026-08-25
 
 ### Added
