@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.1.6](https://github.com/runapi-ai/deepseek/releases/tag/v0.1.6) - 2026-09-16
+
+### Added
+- Document deepseek-flash as the current DeepSeek V4.1 Flash model and synchronize generated contract metadata.
+
+
 ## [v0.1.5](https://github.com/runapi-ai/deepseek/releases/tag/v0.1.5) - 2026-09-04
 
 ### Added

@@ -24,7 +24,7 @@
 Call the DeepSeek API through RunAPI with OpenAI-compatible clients or
 Anthropic-compatible Messages clients. Point clients at `https://runapi.ai/v1`
 for Chat Completions and Responses, or `https://runapi.ai` for `/v1/messages`, send
-`deepseek-v4-pro`, `deepseek-v4-flash`, or `deepseek-v4-flash-vision-exp`, and pay
+`deepseek-flash`, `deepseek-v4-pro`, `deepseek-v4-flash`, or `deepseek-v4-flash-vision-exp`, and pay
 through one RunAPI balance.
 This skill teaches Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents how
 to wire DeepSeek requests through RunAPI.
@@ -165,9 +165,10 @@ Use model `deepseek-v4-pro`, `deepseek-v4-flash`, or
 
 | Model ID | Notes |
 |---|---|
+| `deepseek-flash` | Current V4.1 Flash model for fast text and reasoning |
 | `deepseek-v4-flash-vision-exp` | Vision input with JPEG, PNG, GIF, or WebP content |
 | `deepseek-v4-pro` | Higher-quality DeepSeek text and reasoning tasks |
-| `deepseek-v4-flash` | Fast text and one custom-function lifecycle |
+| `deepseek-v4-flash` | Compatibility alias for Flash |
 
 ## Consistent cross-protocol subset
 

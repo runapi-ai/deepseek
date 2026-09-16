@@ -1,6 +1,6 @@
 ---
 name: deepseek
-description: Call the DeepSeek API (deepseek-v4-pro, deepseek-v4-flash, and deepseek-v4-flash-vision-exp) through RunAPI using OpenAI-compatible Chat Completions and Responses. Use for DeepSeek text, image input, streaming, the verified Flash function path, or an existing compatibility client that needs the conditional reference.
+description: Call the DeepSeek API (deepseek-flash, deepseek-v4-pro, deepseek-v4-flash, and deepseek-v4-flash-vision-exp) through RunAPI using OpenAI-compatible Chat Completions and Responses. Use deepseek-flash for the current V4.1 Flash model; the v4 names remain compatibility aliases.
 documentation: https://runapi.ai/models/deepseek.md
 provider_page: https://runapi.ai/providers/deepseek.md
 catalog: https://runapi.ai/models.md
@@ -69,9 +69,10 @@ Load [compatibility protocols](references/compatibility-protocols.md) only when 
 
 | Model ID | Use when |
 |---|---|
+| `deepseek-flash` | Current V4.1 Flash model for fast text and reasoning |
 | `deepseek-v4-flash-vision-exp` | Image input and vision tasks |
 | `deepseek-v4-pro` | Higher-quality verified text workloads |
-| `deepseek-v4-flash` | Fast text and one verified custom-function lifecycle |
+| `deepseek-v4-flash` | Compatibility alias for Flash |
 
 ## References
 
