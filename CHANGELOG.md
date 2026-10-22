@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.1.7](https://github.com/runapi-ai/deepseek/releases/tag/v0.1.7) - 2026-10-22
+
+### Changed
+- Identify DeepSeek-V4.1-Flash-1017 as the current official revision while keeping deepseek-flash and its compatibility names. Clarify that third-party versions remain unconfirmed and the retired vision name is not a separate recommended image model.
+
+
 ## [v0.1.6](https://github.com/runapi-ai/deepseek/releases/tag/v0.1.6) - 2026-09-16
 
 ### Added

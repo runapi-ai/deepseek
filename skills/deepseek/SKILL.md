@@ -1,6 +1,6 @@
 ---
 name: deepseek
-description: Call the DeepSeek API (deepseek-flash, deepseek-v4-pro, deepseek-v4-flash, and deepseek-v4-flash-vision-exp) through RunAPI using OpenAI-compatible Chat Completions and Responses. Use deepseek-flash for the current V4.1 Flash model; the v4 names remain compatibility aliases.
+description: Call the DeepSeek API (deepseek-flash, deepseek-v4-pro, deepseek-v4-flash, and deepseek-v4-flash-vision-exp) through RunAPI using OpenAI-compatible Chat Completions and Responses. Use deepseek-flash for the current V4.1 Flash 1017 model; the v4 names remain compatibility aliases.
 documentation: https://runapi.ai/models/deepseek.md
 provider_page: https://runapi.ai/providers/deepseek.md
 catalog: https://runapi.ai/models.md
@@ -16,6 +16,13 @@ metadata:
 ---
 
 # DeepSeek on RunAPI
+
+The current official revision is DeepSeek-V4.1-Flash-1017, updated on
+2026-10-17. V4.1 Flash first launched on 2026-09-10. Use `deepseek-flash`;
+`deepseek-v4-flash` and `deepseek-v4-flash-vision-exp` remain compatibility
+names. The official upgrade does not establish the revision of every RunAPI
+service option. Third-party versions remain unconfirmed unless separately
+verified. See the [current model reference](https://runapi.ai/models/deepseek/v4.1-flash.md).
 
 Use OpenAI-compatible endpoints at `https://runapi.ai/v1` as the primary protocol.
 
@@ -43,9 +50,10 @@ For long output, set `stream=True` and
 `deepseek-v4-flash` additionally supports one custom function on Responses;
 keep automatic tool selection and one serial call/result lifecycle.
 
-For image input, use `deepseek-v4-flash-vision-exp` with a Chat Completions
-message content array containing a text part and an `image_url` part. The image
-URL must be publicly reachable and use JPEG, PNG, GIF, or WebP.
+For image input, use `deepseek-flash` only where the current model contract
+permits it. DeepSeek documents image input, but RunAPI has not tested vision
+on every service option. The retired `deepseek-v4-flash-vision-exp` name is
+a historical compatibility alias, not a separate recommended vision model.
 
 ### Verify result
 
@@ -69,8 +77,8 @@ Load [compatibility protocols](references/compatibility-protocols.md) only when 
 
 | Model ID | Use when |
 |---|---|
-| `deepseek-flash` | Current V4.1 Flash model for fast text and reasoning |
-| `deepseek-v4-flash-vision-exp` | Image input and vision tasks |
+| `deepseek-flash` | Current V4.1 Flash 1017 official revision for fast text and reasoning |
+| `deepseek-v4-flash-vision-exp` | Historical compatibility alias, not a separate vision model |
 | `deepseek-v4-pro` | Higher-quality verified text workloads |
 | `deepseek-v4-flash` | Compatibility alias for Flash |
 

@@ -52,6 +52,13 @@ Install the deepseek skill for me:
 
 ## Use DeepSeek on RunAPI
 
+The current official revision is DeepSeek-V4.1-Flash-1017, updated on
+2026-10-17. V4.1 Flash first launched on 2026-09-10. Use `deepseek-flash`;
+`deepseek-v4-flash` and `deepseek-v4-flash-vision-exp` remain compatibility
+names. The official upgrade does not establish the revision of every RunAPI
+service option. Third-party versions remain unconfirmed unless separately
+verified. See the [current model reference](https://runapi.ai/models/deepseek/v4.1-flash).
+
 ```python
 from openai import OpenAI
 
@@ -96,12 +103,15 @@ Get a RunAPI API Key at <https://runapi.ai/api_keys>.
 
 ## Vision input
 
-`deepseek-v4-flash-vision-exp` accepts image content in Chat Completions. Use a
+DeepSeek documents image input for `deepseek-flash`. Use it only where the
+current model contract permits image input. RunAPI has not tested vision on
+every service option. `deepseek-v4-flash-vision-exp` is a retired compatibility
+alias, not a separate recommended vision model. For supported requests, use a
 publicly reachable JPEG, PNG, GIF, or WebP URL in an `image_url` content part.
 
 ```python
 response = client.chat.completions.create(
-    model="deepseek-v4-flash-vision-exp",
+    model="deepseek-flash",
     messages=[{
         "role": "user",
         "content": [
@@ -165,8 +175,8 @@ Use model `deepseek-v4-pro`, `deepseek-v4-flash`, or
 
 | Model ID | Notes |
 |---|---|
-| `deepseek-flash` | Current V4.1 Flash model for fast text and reasoning |
-| `deepseek-v4-flash-vision-exp` | Vision input with JPEG, PNG, GIF, or WebP content |
+| `deepseek-flash` | Current V4.1 Flash 1017 official revision for fast text and reasoning |
+| `deepseek-v4-flash-vision-exp` | Historical compatibility alias, not a separate vision model |
 | `deepseek-v4-pro` | Higher-quality DeepSeek text and reasoning tasks |
 | `deepseek-v4-flash` | Compatibility alias for Flash |
 
@@ -181,7 +191,8 @@ Use model `deepseek-v4-pro`, `deepseek-v4-flash`, or
   parallel calls, explicit tool selection, hosted/MCP/non-function tools,
   Responses state or storage, reasoning references or controls, prompt-cache
   controls, signed thinking, citations, documents, and multimodal content on
-  Pro or Flash are outside this subset. Vision Exp is the image-input model.
+  Pro or Flash are outside this verified text subset. Image support requires
+  separate evidence for the selected service option.
 - Requests outside the subset may return a 4xx response before Usage reservation.
   RunAPI does not silently drop these fields.
 - Terminal Usage is preserved as returned; RunAPI does not synthesize cache
